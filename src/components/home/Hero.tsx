@@ -11,30 +11,31 @@ import { useSiteSettings } from "@/components/providers/SiteSettingsProvider";
 import { getAddressFromSettings } from "@/lib/contact";
 import { useIsDesktop } from "@/hooks/usePageActive";
 
-const HeroScene = dynamic(
-  () => import("@/components/three/HeroScene").then((m) => m.HeroScene),
-  {
-    ssr: false,
-    loading: () => (
-      <div className="w-full h-[320px] md:h-[480px] lg:h-[520px] rounded-3xl bg-wood-cream animate-pulse flex items-center justify-center">
-        <Cog className="w-10 h-10 text-navy-400/40 animate-spin" />
+const ENABLE_3D = process.env.NEXT_PUBLIC_ENABLE_3D === "true";
+
+const HeroScene = ENABLE_3D
+  ? dynamic(() => import("@/components/three/HeroScene").then((m) => m.HeroScene), {
+      ssr: false,
+      loading: () => <HeroStaticVisual />,
+    })
+  : null;
+
+function HeroStaticVisual() {
+  return (
+    <div className="w-full h-[280px] sm:h-[320px] md:h-[480px] lg:h-[520px] rounded-3xl bg-gradient-to-br from-navy-800 via-navy-700 to-navy-600 flex flex-col items-center justify-center gap-4 border border-navy-600/20 shadow-xl">
+      <div className="w-20 h-20 rounded-2xl bg-gold/20 border border-gold/40 flex items-center justify-center">
+        <Cog className="w-10 h-10 text-gold animate-spin" style={{ animationDuration: "8s" }} />
       </div>
-    ),
-  }
-);
+      <p className="font-label text-gold text-sm tracking-widest">CNC PRECISION</p>
+    </div>
+  );
+}
 
 function HeroVisual() {
   const isDesktop = useIsDesktop();
 
-  if (!isDesktop) {
-    return (
-      <div className="w-full h-[280px] sm:h-[320px] rounded-3xl bg-gradient-to-br from-navy-800 via-navy-700 to-navy-600 flex flex-col items-center justify-center gap-4 border border-navy-600/20 shadow-xl">
-        <div className="w-20 h-20 rounded-2xl bg-gold/20 border border-gold/40 flex items-center justify-center">
-          <Cog className="w-10 h-10 text-gold animate-spin" style={{ animationDuration: "8s" }} />
-        </div>
-        <p className="font-label text-gold text-sm tracking-widest">CNC PRECISION</p>
-      </div>
-    );
+  if (!ENABLE_3D || !isDesktop || !HeroScene) {
+    return <HeroStaticVisual />;
   }
 
   return <HeroScene />;
