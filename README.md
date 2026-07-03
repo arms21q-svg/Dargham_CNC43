@@ -2,6 +2,8 @@
 
 موقع إلكتروني احترافي لأعمال CNC الخشب مبني بأحدث تقنيات الويب.
 
+**المستودع:** [github.com/arms21q-svg/Dargham_CNC43](https://github.com/arms21q-svg/Dargham_CNC43)
+
 ## التقنيات
 
 - **Next.js 16** (App Router)
