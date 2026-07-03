@@ -1,11 +1,11 @@
 "use client";
 
-import { Suspense, useRef, useMemo } from "react";
+import { Suspense, useRef, useMemo, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, ContactShadows, Sparkles, RoundedBox } from "@react-three/drei";
 import type { Group, Mesh } from "three";
 import { SCENE_COLORS, BRAND } from "@/lib/brand";
-import { usePageActive, useIsDesktop } from "@/hooks/usePageActive";
+import { usePageActive } from "@/hooks/usePageActive";
 
 const C = SCENE_COLORS;
 
@@ -362,6 +362,17 @@ function Scene({ shadows }: { shadows: boolean }) {
   );
 }
 
+function StaticFallback() {
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center gap-3 bg-gradient-to-br from-navy-800 to-navy-600">
+      <div className="w-16 h-16 rounded-2xl bg-gold/20 border border-gold/40 flex items-center justify-center">
+        <span className="font-display text-gold text-2xl">D</span>
+      </div>
+      <p className="font-label text-gold/80 text-xs tracking-widest">DIRGHAM CNC</p>
+    </div>
+  );
+}
+
 function LoadingFallback() {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center gap-4 bg-wood-cream/80 rounded-3xl">
@@ -373,19 +384,46 @@ function LoadingFallback() {
 
 export function HeroScene() {
   const active = usePageActive();
-  const isDesktop = useIsDesktop();
+  const [contextLost, setContextLost] = useState(false);
+  const [canvasKey, setCanvasKey] = useState(0);
+
+  if (contextLost) {
+    return (
+      <div className="w-full h-[320px] md:h-[480px] lg:h-[520px] bg-wood-cream rounded-3xl overflow-hidden">
+        <StaticFallback />
+      </div>
+    );
+  }
 
   return (
     <div className="w-full h-[320px] md:h-[480px] lg:h-[520px] bg-wood-cream">
       <Suspense fallback={<LoadingFallback />}>
         <Canvas
-          shadows={isDesktop}
-          dpr={isDesktop ? [1, 1.25] : [1, 1]}
+          key={canvasKey}
+          dpr={1}
           frameloop={active ? "always" : "never"}
           camera={{ position: [5.5, 3.8, 5.5], fov: 40 }}
-          gl={{ antialias: isDesktop, alpha: true, powerPreference: "high-performance" }}
+          gl={{
+            antialias: false,
+            alpha: true,
+            powerPreference: "default",
+            failIfMajorPerformanceCaveat: false,
+          }}
+          onCreated={({ gl }) => {
+            const canvas = gl.domElement;
+            const onLost = (e: Event) => {
+              e.preventDefault();
+              setContextLost(true);
+            };
+            const onRestored = () => {
+              setContextLost(false);
+              setCanvasKey((k) => k + 1);
+            };
+            canvas.addEventListener("webglcontextlost", onLost, false);
+            canvas.addEventListener("webglcontextrestored", onRestored, false);
+          }}
         >
-          <Scene shadows={isDesktop} />
+          <Scene shadows={false} />
         </Canvas>
       </Suspense>
     </div>
