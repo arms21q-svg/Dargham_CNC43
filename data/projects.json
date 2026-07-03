@@ -1,0 +1,246 @@
+[
+  {
+    "id": "1",
+    "slug": "luxury-wooden-door",
+    "title": {
+      "ar": "باب خشبي فاخر",
+      "en": "Luxury Wooden Door"
+    },
+    "description": {
+      "ar": "باب خشبي فاخر بنقوش CNC معقدة وتشطيبات ذهبية راقية.",
+      "en": "Luxury wooden door with complex CNC engravings and elegant gold finishes."
+    },
+    "category": "doors",
+    "images": [
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&q=80"
+    ],
+    "woodType": {
+      "ar": "خشب البلوط",
+      "en": "Oak Wood"
+    },
+    "cncMachine": {
+      "ar": "ماكينة CNC 5 محاور",
+      "en": "5-Axis CNC Machine"
+    },
+    "duration": {
+      "ar": "3 أسابيع",
+      "en": "3 Weeks"
+    },
+    "client": {
+      "ar": "فيلا خاصة",
+      "en": "Private Villa"
+    },
+    "year": 2025,
+    "featured": true,
+    "beforeAfter": [
+      {
+        "before": "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+        "after": "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "slug": "modern-kitchen",
+    "title": {
+      "ar": "مطبخ عصري",
+      "en": "Modern Kitchen"
+    },
+    "description": {
+      "ar": "مطبخ عصري بتصميم مفتوح وخامات خشبية فاخرة.",
+      "en": "Modern open-design kitchen with premium wood materials."
+    },
+    "category": "kitchens",
+    "images": [
+      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1200&q=80",
+      "https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80"
+    ],
+    "woodType": {
+      "ar": "خشب الجوز",
+      "en": "Walnut Wood"
+    },
+    "cncMachine": {
+      "ar": "ماكينة CNC 3 محاور",
+      "en": "3-Axis CNC Machine"
+    },
+    "duration": {
+      "ar": "6 أسابيع",
+      "en": "6 Weeks"
+    },
+    "client": {
+      "ar": "منزل عائلي",
+      "en": "Family Home"
+    },
+    "year": 2025,
+    "featured": true
+  },
+  {
+    "id": "3",
+    "slug": "wall-panel-art",
+    "title": {
+      "ar": "لوحة جدارية فنية",
+      "en": "Artistic Wall Panel"
+    },
+    "description": {
+      "ar": "لوحة جدارية خشبية بنقوش هندسية معقدة.",
+      "en": "Wooden wall panel with complex geometric engravings."
+    },
+    "category": "panels",
+    "images": [
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80"
+    ],
+    "woodType": {
+      "ar": "خشب الماهوجني",
+      "en": "Mahogany Wood"
+    },
+    "cncMachine": {
+      "ar": "ماكينة CNC 4 محاور",
+      "en": "4-Axis CNC Machine"
+    },
+    "duration": {
+      "ar": "أسبوعين",
+      "en": "2 Weeks"
+    },
+    "client": {
+      "ar": "مكتب تجاري",
+      "en": "Commercial Office"
+    },
+    "year": 2024,
+    "featured": true
+  },
+  {
+    "id": "4",
+    "slug": "master-bedroom",
+    "title": {
+      "ar": "غرفة نوم رئيسية",
+      "en": "Master Bedroom"
+    },
+    "description": {
+      "ar": "غرفة نوم رئيسية متكاملة بتصميم كلاسيكي عصري.",
+      "en": "Complete master bedroom with modern classic design."
+    },
+    "category": "bedrooms",
+    "images": [
+      "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1200&q=80"
+    ],
+    "woodType": {
+      "ar": "خشب الزان",
+      "en": "Beech Wood"
+    },
+    "cncMachine": {
+      "ar": "ماكينة CNC 3 محاور",
+      "en": "3-Axis CNC Machine"
+    },
+    "duration": {
+      "ar": "4 أسابيع",
+      "en": "4 Weeks"
+    },
+    "client": {
+      "ar": "شقة سكنية",
+      "en": "Residential Apartment"
+    },
+    "year": 2024,
+    "featured": true
+  },
+  {
+    "id": "5",
+    "slug": "decorative-ceiling",
+    "title": {
+      "ar": "سقف ديكوري",
+      "en": "Decorative Ceiling"
+    },
+    "description": {
+      "ar": "سقف ديكوري خشبي بنقوش عربية تقليدية.",
+      "en": "Decorative wooden ceiling with traditional Arabic patterns."
+    },
+    "category": "decorations",
+    "images": [
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1200&q=80"
+    ],
+    "woodType": {
+      "ar": "خشب الصنوبر",
+      "en": "Pine Wood"
+    },
+    "cncMachine": {
+      "ar": "ماكينة CNC 5 محاور",
+      "en": "5-Axis CNC Machine"
+    },
+    "duration": {
+      "ar": "5 أسابيع",
+      "en": "5 Weeks"
+    },
+    "client": {
+      "ar": "قصر خاص",
+      "en": "Private Palace"
+    },
+    "year": 2024
+  },
+  {
+    "id": "6",
+    "slug": "custom-furniture-set",
+    "title": {
+      "ar": "طقم أثاث مخصص",
+      "en": "Custom Furniture Set"
+    },
+    "description": {
+      "ar": "طقم أثاث خشبي مخصص لغرفة المعيشة.",
+      "en": "Custom wooden furniture set for the living room."
+    },
+    "category": "furniture",
+    "images": [
+      "https://images.unsplash.com/photo-1555041469-a586c36ea9bc?w=1200&q=80"
+    ],
+    "woodType": {
+      "ar": "خشب التيك",
+      "en": "Teak Wood"
+    },
+    "cncMachine": {
+      "ar": "ماكينة CNC 3 محاور",
+      "en": "3-Axis CNC Machine"
+    },
+    "duration": {
+      "ar": "3 أسابيع",
+      "en": "3 Weeks"
+    },
+    "client": {
+      "ar": "فندق بوتيك",
+      "en": "Boutique Hotel"
+    },
+    "year": 2023
+  },
+  {
+    "title": {
+      "ar": "frffffff",
+      "en": "sdsdd"
+    },
+    "description": {
+      "ar": "سيبي",
+      "en": "xaaaaa"
+    },
+    "category": "doors",
+    "images": [
+      "/uploads/1783110949474-57234543.jpg"
+    ],
+    "woodType": {
+      "ar": "mdf",
+      "en": "mdf"
+    },
+    "cncMachine": {
+      "ar": "ccccc",
+      "en": "dddddd"
+    },
+    "duration": {
+      "ar": "2",
+      "en": "2"
+    },
+    "client": {
+      "ar": "22333",
+      "en": "ddddd"
+    },
+    "year": 2026,
+    "featured": false,
+    "id": "1783110998698",
+    "slug": "sdsdd"
+  }
+]

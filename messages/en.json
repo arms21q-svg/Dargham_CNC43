@@ -1,0 +1,170 @@
+{
+  "metadata": {
+    "title": "Dirgham – CNC Woodworks",
+    "description": "We craft creativity in every piece of wood using the latest CNC technology. Precise, modern, and high-quality designs."
+  },
+  "nav": {
+    "home": "Home",
+    "portfolio": "Portfolio",
+    "services": "Services",
+    "about": "About",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title": "Dirgham CNC Woodworks",
+    "subtitle": "We craft creativity in every piece of wood using the latest CNC technology to deliver precise, modern, and high-quality designs.",
+    "ctaPortfolio": "View Our Work",
+    "ctaContact": "Contact Us"
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Complete CNC solutions for all your woodworking needs",
+    "cncCutting": "CNC Cutting",
+    "cncEngraving": "CNC Engraving",
+    "woodDecor": "Wood Decorations",
+    "kitchens": "Kitchens",
+    "doors": "Doors",
+    "bedrooms": "Bedrooms",
+    "furniture": "Furniture",
+    "woodPanels": "Wood Panels",
+    "customDesign": "Custom Design",
+    "viewAll": "View All Services"
+  },
+  "whyUs": {
+    "title": "Why Choose Us",
+    "subtitle": "We are committed to the highest standards of quality and professionalism",
+    "precision": "High Precision",
+    "speed": "Fast Execution",
+    "quality": "Excellent Quality",
+    "materials": "Premium Materials",
+    "custom": "Custom Design",
+    "pricing": "Competitive Pricing",
+    "experience": "Years of Experience"
+  },
+  "stats": {
+    "title": "Our Achievements",
+    "projects": "Completed Projects",
+    "clients": "Happy Clients",
+    "years": "Years Experience",
+    "satisfaction": "Client Satisfaction"
+  },
+  "gallery": {
+    "title": "Quick Gallery",
+    "subtitle": "Our latest featured works",
+    "viewAll": "View All"
+  },
+  "testimonials": {
+    "title": "Client Reviews",
+    "subtitle": "What our clients say about us"
+  },
+  "cta": {
+    "title": "Have a Project in Mind?",
+    "subtitle": "Contact us today for a free consultation",
+    "whatsapp": "WhatsApp",
+    "call": "Call Us"
+  },
+  "portfolio": {
+    "title": "Our Portfolio",
+    "subtitle": "Gallery of our distinguished projects",
+    "all": "All",
+    "decorations": "Decorations",
+    "doors": "Doors",
+    "kitchens": "Kitchens",
+    "bedrooms": "Bedrooms",
+    "furniture": "Furniture",
+    "panels": "Panels",
+    "special": "Special Projects",
+    "viewProject": "View Project"
+  },
+  "project": {
+    "description": "Project Description",
+    "woodType": "Wood Type",
+    "cncMachine": "CNC Machine",
+    "duration": "Duration",
+    "client": "Client",
+    "year": "Year",
+    "beforeAfter": "Before & After",
+    "gallery": "Photo Gallery",
+    "backToPortfolio": "Back to Portfolio"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "The story of Dirgham CNC Woodworks",
+    "story": "Our Story",
+    "storyText": "Dirgham CNC Woodworks is a specialized workshop in designing and executing woodwork using the latest computer-controlled cutting and engraving technology. We combine traditional craftsmanship with modern technology to deliver unique products that meet the highest quality standards.",
+    "vision": "Our Vision",
+    "visionText": "To be the first choice in CNC woodwork in the region, known for our creativity, quality, and exceptional customer service.",
+    "mission": "Our Mission",
+    "missionText": "To provide innovative and precise wood solutions that combine beauty and functionality, while maintaining the highest standards of quality and professionalism.",
+    "experience": "Our Experience",
+    "experienceText": "Over 10 years of experience in CNC and carpentry, with a professional team of designers and technicians.",
+    "process": "Our Process",
+    "step1": "Consultation & Design",
+    "step2": "Material Selection",
+    "step3": "Programming & Manufacturing",
+    "step4": "Finishing & Installation",
+    "workshop": "Our Workshop",
+    "video": "Intro Video"
+  },
+  "servicesPage": {
+    "title": "Our Services",
+    "subtitle": "Complete solutions for all your needs",
+    "learnMore": "Learn More"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Answers to the most common questions"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Articles and tips about wood and design",
+    "readMore": "Read More",
+    "categories": "Categories"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "We are here to help you",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "subject": "Subject",
+      "message": "Your Message",
+      "submit": "Send Message",
+      "sending": "Sending...",
+      "success": "Your message has been sent successfully!",
+      "error": "An error occurred, please try again"
+    },
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "address": "Address",
+      "hours": "Working Hours",
+      "hoursValue": "Sat - Thu: 8:00 AM - 6:00 PM",
+      "openMap": "Open location on Google Maps"
+    }
+  },
+  "footer": {
+    "description": "Dirgham CNC Woodworks - We craft creativity in every piece of wood",
+    "quickLinks": "Quick Links",
+    "contact": "Contact Us",
+    "rights": "All rights reserved",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions"
+  },
+  "common": {
+    "loading": "Loading...",
+    "back": "Back",
+    "notFound": "Page Not Found",
+    "notFoundDesc": "Sorry, the page you are looking for does not exist"
+  },
+  "privacy": {
+    "title": "Privacy Policy"
+  },
+  "terms": {
+    "title": "Terms & Conditions"
+  }
+}
