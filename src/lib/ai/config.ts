@@ -1,3 +1,7 @@
+/**
+ * Google Gemini AI — modular configuration
+ * @see https://ai.google.dev/gemini-api/docs
+ */
 export type AiProviderName = "gemini" | "openrouter";
 
 function readGeminiKey() {
@@ -5,11 +9,11 @@ function readGeminiKey() {
 }
 
 export const aiConfig = {
-  provider: (process.env.AI_PROVIDER || "auto") as AiProviderName | "auto",
+  /** Default: gemini (free Google AI Studio API) */
+  provider: (process.env.AI_PROVIDER || "gemini") as AiProviderName | "auto",
   gemini: {
     apiKey: readGeminiKey(),
     model: process.env.AI_MODEL_GEMINI || "gemini-2.0-flash-lite",
-    /** نماذج احتياطية إذا فشل النموذج الأساسي */
     fallbackModels: ["gemini-2.0-flash-lite", "gemini-1.5-flash", "gemini-2.0-flash"],
   },
   openrouter: {
@@ -24,13 +28,19 @@ export const aiConfig = {
   },
 } as const;
 
+/** True when Gemini API key is set (primary provider) */
 export function isAiConfigured(): boolean {
-  return Boolean(aiConfig.gemini.apiKey || aiConfig.openrouter.apiKey);
+  if (aiConfig.provider === "openrouter") {
+    return Boolean(aiConfig.openrouter.apiKey);
+  }
+  if (aiConfig.provider === "auto") {
+    return Boolean(aiConfig.gemini.apiKey || aiConfig.openrouter.apiKey);
+  }
+  return Boolean(aiConfig.gemini.apiKey);
 }
 
 export function getActiveProviderName(): "gemini" | "openrouter" | "none" {
   if (aiConfig.provider === "openrouter" && aiConfig.openrouter.apiKey) return "openrouter";
-  if (aiConfig.provider === "gemini" && aiConfig.gemini.apiKey) return "gemini";
   if (aiConfig.gemini.apiKey) return "gemini";
   if (aiConfig.openrouter.apiKey) return "openrouter";
   return "none";
