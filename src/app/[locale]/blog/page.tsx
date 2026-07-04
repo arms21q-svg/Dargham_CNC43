@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import Image from "next/image";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import { Link } from "@/i18n/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { blogPosts } from "@/data";
@@ -25,7 +25,7 @@ export default async function BlogPage({
             <Link key={post.id} href={`/blog/${post.slug}`}>
               <article className="group rounded-xl overflow-hidden bg-card border border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full">
                 <div className="relative aspect-video overflow-hidden">
-                  <Image
+                  <ProjectImage
                     src={post.image}
                     alt={post.title[loc]}
                     fill

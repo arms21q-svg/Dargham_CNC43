@@ -7,6 +7,16 @@ export async function POST(request: Request) {
   if (auth) return auth;
 
   try {
+    if (process.env.VERCEL === "1" && !process.env.BLOB_READ_WRITE_TOKEN) {
+      return NextResponse.json(
+        {
+          error:
+            "رفع الصور على Vercel يتطلب تفعيل Vercel Blob. استخدم رابط صورة مؤقتاً أو فعّل Blob من لوحة Vercel.",
+        },
+        { status: 503 }
+      );
+    }
+
     const formData = await request.formData();
     const file = formData.get("file");
 

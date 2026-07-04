@@ -63,36 +63,46 @@ export function Footer() {
             <div className="glass-card rounded-2xl p-6">
               <h3 className="font-bold text-lg mb-4 text-gold">{t("contact")}</h3>
               <ul className="space-y-3">
-                <li className="flex items-center gap-3 text-muted-foreground text-sm">
-                  <Phone className="w-4 h-4 text-gold shrink-0" />
-                  <a href={contactLinks.phone} className="hover:text-gold transition-colors">
-                    {settings.phoneDisplay}
-                  </a>
-                </li>
-                <li className="flex items-center gap-3 text-muted-foreground text-sm">
-                  <MessageCircle className="w-4 h-4 text-gold shrink-0" />
-                  <a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                    {settings.whatsappDisplay}
-                  </a>
-                </li>
-                <li className="flex items-center gap-3 text-muted-foreground text-sm">
-                  <Mail className="w-4 h-4 text-gold shrink-0" />
-                  <a href={contactLinks.email} className="hover:text-gold transition-colors">{settings.email}</a>
-                </li>
-                <li className="flex items-start gap-3 text-muted-foreground text-sm">
-                  <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
-                  <a href={contactLinks.map} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
-                    {address}
-                  </a>
-                </li>
+                {settings.phoneDisplay?.trim() && contactLinks.phone && (
+                  <li className="flex items-center gap-3 text-muted-foreground text-sm">
+                    <Phone className="w-4 h-4 text-gold shrink-0" />
+                    <a href={contactLinks.phone} className="hover:text-gold transition-colors">
+                      {settings.phoneDisplay}
+                    </a>
+                  </li>
+                )}
+                {settings.whatsappDisplay?.trim() && contactLinks.whatsapp && (
+                  <li className="flex items-center gap-3 text-muted-foreground text-sm">
+                    <MessageCircle className="w-4 h-4 text-gold shrink-0" />
+                    <a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+                      {settings.whatsappDisplay}
+                    </a>
+                  </li>
+                )}
+                {settings.email?.trim() && contactLinks.email && (
+                  <li className="flex items-center gap-3 text-muted-foreground text-sm">
+                    <Mail className="w-4 h-4 text-gold shrink-0" />
+                    <a href={contactLinks.email} className="hover:text-gold transition-colors">{settings.email}</a>
+                  </li>
+                )}
+                {address && contactLinks.map && (
+                  <li className="flex items-start gap-3 text-muted-foreground text-sm">
+                    <MapPin className="w-4 h-4 text-gold shrink-0 mt-0.5" />
+                    <a href={contactLinks.map} target="_blank" rel="noopener noreferrer" className="hover:text-gold transition-colors">
+                      {address}
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
 
+            {address && (
             <div className="glass-card rounded-2xl p-6">
               <h3 className="font-bold text-lg mb-4 text-gold">{tContact("address")}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">
                 {address}
               </p>
+              {contactLinks.map && (
               <a
                 href={contactLinks.map}
                 target="_blank"
@@ -102,12 +112,15 @@ export function Footer() {
                 <MapPin className="w-4 h-4" />
                 {tContact("openMap")}
               </a>
+              )}
             </div>
+            )}
           </div>
 
           <div className="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
             <p className="text-muted-foreground text-sm">
-              © {new Date().getFullYear()} Dirgham CNC · {settings.phoneDisplay} · {t("rights")}
+              © {new Date().getFullYear()} Dirgham CNC
+              {settings.phoneDisplay?.trim() ? ` · ${settings.phoneDisplay}` : ""} · {t("rights")}
             </p>
             <div className="flex gap-6">
               <Link href="/privacy" className="text-muted-foreground hover:text-gold text-sm transition-colors">{t("privacy")}</Link>

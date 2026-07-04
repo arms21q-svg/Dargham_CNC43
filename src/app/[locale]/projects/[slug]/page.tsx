@@ -37,8 +37,8 @@ export default async function ProjectPage({
     { icon: Cog, label: t("cncMachine"), value: project.cncMachine[loc] },
     { icon: Clock, label: t("duration"), value: project.duration[loc] },
     { icon: User, label: t("client"), value: project.client[loc] },
-    { icon: Calendar, label: t("year"), value: String(project.year) },
-  ];
+    { icon: Calendar, label: t("year"), value: project.year ? String(project.year) : "" },
+  ].filter((d) => d.value?.trim());
 
   return (
     <div className="py-20">
@@ -117,18 +117,22 @@ export default async function ProjectPage({
         )}
 
         <div className="flex flex-wrap justify-center gap-4">
-          <a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer">
-            <Button size="lg" variant="secondary" className="gap-2">
-              <MessageCircle className="w-5 h-5" />
-              {tCta("whatsapp")}
-            </Button>
-          </a>
-          <a href={contactLinks.phone}>
-            <Button size="lg" variant="outline" className="gap-2">
-              <Phone className="w-5 h-5" />
-              {tCta("call")}
-            </Button>
-          </a>
+          {contactLinks.whatsapp && (
+            <a href={contactLinks.whatsapp} target="_blank" rel="noopener noreferrer">
+              <Button size="lg" variant="secondary" className="gap-2">
+                <MessageCircle className="w-5 h-5" />
+                {tCta("whatsapp")}
+              </Button>
+            </a>
+          )}
+          {contactLinks.phone && (
+            <a href={contactLinks.phone}>
+              <Button size="lg" variant="outline" className="gap-2">
+                <Phone className="w-5 h-5" />
+                {tCta("call")}
+              </Button>
+            </a>
+          )}
           <Link href="/contact">
             <Button size="lg">{locale === "ar" ? "تواصل معنا" : "Contact Us"}</Button>
           </Link>

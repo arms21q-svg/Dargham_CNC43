@@ -166,5 +166,59 @@
   },
   "terms": {
     "title": "Terms & Conditions"
+  },
+  "ai": {
+    "button": "AI Assistant",
+    "title": "Dirgham AI Assistant",
+    "subtitle": "CNC · Wood · MDF",
+    "tabs": {
+      "chat": "Chat",
+      "search": "Search",
+      "ideas": "Ideas",
+      "similar": "Similar",
+      "estimate": "Estimate",
+      "colors": "Colors"
+    },
+    "chat": {
+      "placeholder": "Ask about CNC, wood, MDF...",
+      "send": "Send",
+      "welcome": "Hello! How can I help with your wood project?"
+    },
+    "search": {
+      "placeholder": "Search the site...",
+      "search": "Search",
+      "noResults": "No results"
+    },
+    "ideas": {
+      "generate": "Generate ideas",
+      "style": "Style (optional)",
+      "category": "Category (optional)"
+    },
+    "similar": {
+      "upload": "Upload an image to find similar projects",
+      "analyzing": "Analyzing..."
+    },
+    "estimate": {
+      "width": "Width (cm)",
+      "height": "Height (cm)",
+      "depth": "Depth (cm)",
+      "material": "Material",
+      "category": "Project type",
+      "complexity": "Complexity",
+      "calculate": "Calculate",
+      "simple": "Simple",
+      "medium": "Medium",
+      "complex": "Complex",
+      "range": "Estimate",
+      "tips": "Tip"
+    },
+    "colors": {
+      "room": "Room type",
+      "mood": "Mood",
+      "suggest": "Suggest colors & materials"
+    },
+    "unavailable": "Service temporarily unavailable. Please try again later.",
+    "notConfigured": "AI not enabled. Add GEMINI_API_KEY in Vercel and redeploy.",
+    "close": "Close"
   }
 }

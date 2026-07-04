@@ -26,10 +26,16 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   images: {
+    // تجنب فشل /_next/image للروابط الخارجية وملفات /uploads على Vercel
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
       },
     ],
   },

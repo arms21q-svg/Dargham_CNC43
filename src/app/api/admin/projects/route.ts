@@ -21,9 +21,8 @@ export async function POST(request: Request) {
     revalidateSiteContent();
     return NextResponse.json(project, { status: 201 });
   } catch (error) {
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Failed to create project" },
-      { status: 400 }
-    );
+    const message = error instanceof Error ? error.message : "Failed to create project";
+    const status = message.includes("Vercel Blob") ? 503 : 400;
+    return NextResponse.json({ error: message }, { status });
   }
 }

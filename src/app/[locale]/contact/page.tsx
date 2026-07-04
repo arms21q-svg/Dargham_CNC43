@@ -62,22 +62,20 @@ export default function ContactPage() {
   };
 
   const contactInfo = [
-    { icon: Phone, label: t("info.phone"), value: settings.phoneDisplay, href: contactLinks.phone },
-    { icon: Mail, label: t("info.email"), value: settings.email, href: contactLinks.email },
-    {
-      icon: MessageCircle,
-      label: t("info.whatsapp"),
-      value: settings.whatsappDisplay,
-      href: contactLinks.whatsapp,
-    },
-    {
-      icon: MapPin,
-      label: t("info.address"),
-      value: getAddressFromSettings(settings, locale),
-      href: contactLinks.map,
-    },
+    settings.phoneDisplay?.trim() && contactLinks.phone
+      ? { icon: Phone, label: t("info.phone"), value: settings.phoneDisplay, href: contactLinks.phone }
+      : null,
+    settings.email?.trim() && contactLinks.email
+      ? { icon: Mail, label: t("info.email"), value: settings.email, href: contactLinks.email }
+      : null,
+    settings.whatsappDisplay?.trim() && contactLinks.whatsapp
+      ? { icon: MessageCircle, label: t("info.whatsapp"), value: settings.whatsappDisplay, href: contactLinks.whatsapp }
+      : null,
+    getAddressFromSettings(settings, locale) && contactLinks.map
+      ? { icon: MapPin, label: t("info.address"), value: getAddressFromSettings(settings, locale), href: contactLinks.map }
+      : null,
     { icon: Clock, label: t("info.hours"), value: t("info.hoursValue") },
-  ];
+  ].filter(Boolean) as { icon: typeof Phone; label: string; value: string; href?: string }[];
 
   return (
     <div className="py-20">
@@ -161,6 +159,7 @@ export default function ContactPage() {
               </div>
             ))}
 
+            {contactLinks.map && (
             <a
               href={contactLinks.map}
               target="_blank"
@@ -177,6 +176,7 @@ export default function ContactPage() {
                 </div>
               </div>
             </a>
+            )}
           </motion.div>
         </div>
       </div>

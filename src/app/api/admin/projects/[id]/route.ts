@@ -27,10 +27,9 @@ export async function PATCH(request: Request, { params }: { params: Promise<{ id
     revalidateSiteContent();
     return NextResponse.json(project);
   } catch (error) {
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Failed to update" },
-      { status: 400 }
-    );
+    const message = error instanceof Error ? error.message : "Failed to update";
+    const status = message.includes("Vercel Blob") ? 503 : 400;
+    return NextResponse.json({ error: message }, { status });
   }
 }
 

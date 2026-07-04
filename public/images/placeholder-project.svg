@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" role="img" aria-label="5H1) :J1 E*HA1)">
+  <rect width="800" height="600" fill="#0f1f38"/>
+  <rect x="40" y="40" width="720" height="520" rx="24" fill="#152a4a" stroke="#c9a227" stroke-width="4" stroke-dasharray="12 8"/>
+  <path d="M280 380 L400 260 L520 320 L620 220" fill="none" stroke="#c9a227" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <circle cx="320" cy="220" r="36" fill="#c9a227" opacity="0.35"/>
+  <text x="400" y="430" font-family="Arial,sans-serif" font-size="28" fill="#94a3b8" text-anchor="middle">'D5H1) :J1 E*HA1)</text>
+  <text x="400" y="470" font-family="Arial,sans-serif" font-size="20" fill="#64748b" text-anchor="middle">#9/ 1A9 'D5H1) EF DH-) 'D*-CE</text>
+</svg>

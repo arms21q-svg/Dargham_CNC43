@@ -4,7 +4,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Project, ProjectCategory } from "@/types";
 import { PROJECT_CATEGORIES } from "@/lib/constants";
+import { CATEGORY_LABELS } from "@/lib/categories";
 import { ImagePicker } from "@/components/admin/ImagePicker";
+import { AiAssistPanel } from "@/components/admin/AiAssistPanel";
 import { cn } from "@/lib/utils";
 
 type FormState = {
@@ -97,6 +99,12 @@ export function ProjectForm({
       return;
     }
 
+    if (!form.titleAr.trim() && !form.titleEn.trim()) {
+      setError("أدخل عنواناً بالعربية أو الإنجليزية على الأقل");
+      setLoading(false);
+      return;
+    }
+
     const url =
       mode === "create" ? "/api/admin/projects" : `/api/admin/projects/${project!.id}`;
     const method = mode === "create" ? "POST" : "PATCH";
@@ -128,25 +136,41 @@ export function ProjectForm({
 
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
         <h2 className="font-bold text-gray-900">العنوان والوصف</h2>
+        <p className="text-xs text-gray-500">الحقول اختيارية ما عدا صورة واحدة على الأقل وعنوان (عربي أو إنجليزي)</p>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className={labelClass}>العنوان (عربي)</label>
-            <input className={inputClass} value={form.titleAr} onChange={(e) => set("titleAr", e.target.value)} required />
+            <input className={inputClass} value={form.titleAr} onChange={(e) => set("titleAr", e.target.value)} />
           </div>
           <div>
             <label className={labelClass}>العنوان (إنجليزي)</label>
-            <input className={inputClass} value={form.titleEn} onChange={(e) => set("titleEn", e.target.value)} required />
+            <input className={inputClass} value={form.titleEn} onChange={(e) => set("titleEn", e.target.value)} />
           </div>
           <div className="md:col-span-2">
-            <label className={labelClass}>الوصف (عربي)</label>
-            <textarea className={cn(inputClass, "min-h-24")} value={form.descriptionAr} onChange={(e) => set("descriptionAr", e.target.value)} required />
+            <label className={labelClass}>الوصف (عربي) <span className="text-gray-400 font-normal">(اختياري)</span></label>
+            <textarea className={cn(inputClass, "min-h-24")} value={form.descriptionAr} onChange={(e) => set("descriptionAr", e.target.value)} />
           </div>
           <div className="md:col-span-2">
-            <label className={labelClass}>الوصف (إنجليزي)</label>
-            <textarea className={cn(inputClass, "min-h-24")} value={form.descriptionEn} onChange={(e) => set("descriptionEn", e.target.value)} required />
+            <label className={labelClass}>الوصف (إنجليزي) <span className="text-gray-400 font-normal">(اختياري)</span></label>
+            <textarea className={cn(inputClass, "min-h-24")} value={form.descriptionEn} onChange={(e) => set("descriptionEn", e.target.value)} />
           </div>
         </div>
       </section>
+
+      <AiAssistPanel
+        titleAr={form.titleAr}
+        titleEn={form.titleEn}
+        category={form.category}
+        woodTypeAr={form.woodTypeAr}
+        woodTypeEn={form.woodTypeEn}
+        descriptionAr={form.descriptionAr}
+        descriptionEn={form.descriptionEn}
+        onApply={(data) => {
+          if (data.descriptionAr !== undefined) set("descriptionAr", data.descriptionAr);
+          if (data.descriptionEn !== undefined) set("descriptionEn", data.descriptionEn);
+          if (data.slug) set("slug", data.slug);
+        }}
+      />
 
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
         <h2 className="font-bold text-gray-900">التفاصيل</h2>
@@ -155,13 +179,13 @@ export function ProjectForm({
             <label className={labelClass}>التصنيف</label>
             <select className={inputClass} value={form.category} onChange={(e) => set("category", e.target.value as ProjectCategory)}>
               {PROJECT_CATEGORIES.map((c) => (
-                <option key={c} value={c}>{c}</option>
+                <option key={c} value={c}>{CATEGORY_LABELS[c].ar}</option>
               ))}
             </select>
           </div>
           <div>
-            <label className={labelClass}>السنة</label>
-            <input type="number" className={inputClass} value={form.year} onChange={(e) => set("year", Number(e.target.value))} required />
+            <label className={labelClass}>السنة <span className="text-gray-400 font-normal">(اختياري)</span></label>
+            <input type="number" className={inputClass} value={form.year} onChange={(e) => set("year", Number(e.target.value))} />
           </div>
           <div className="md:col-span-2">
             <label className={labelClass}>صور العمل</label>
@@ -188,7 +212,7 @@ export function ProjectForm({
       </section>
 
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-4">
-        <h2 className="font-bold text-gray-900">مواصفات المشروع</h2>
+        <h2 className="font-bold text-gray-900">مواصفات المشروع <span className="text-sm font-normal text-gray-400">(كلها اختيارية)</span></h2>
         <div className="grid md:grid-cols-2 gap-4">
           {(
             [
@@ -205,7 +229,6 @@ export function ProjectForm({
                   className={inputClass}
                   value={form[arKey]}
                   onChange={(e) => set(arKey, e.target.value)}
-                  required
                 />
               </div>
               <div>
@@ -214,7 +237,6 @@ export function ProjectForm({
                   className={inputClass}
                   value={form[enKey]}
                   onChange={(e) => set(enKey, e.target.value)}
-                  required
                 />
               </div>
             </div>

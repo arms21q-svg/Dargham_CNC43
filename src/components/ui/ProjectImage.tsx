@@ -1,11 +1,25 @@
+"use client";
+
+import { useState } from "react";
 import Image, { type ImageProps } from "next/image";
+import { PLACEHOLDER_IMAGE, shouldUseUnoptimizedImage } from "@/lib/image-utils";
 
-/** يدعم صور مرفوعة محلياً وروابط خارجية من لوحة الإدارة */
-export function ProjectImage({ src, ...props }: ImageProps) {
+/** صور الأعمال — بدون تحسين Next + صورة بديلة عند 404 */
+export function ProjectImage({ src, unoptimized, onError, ...props }: ImageProps) {
   const srcStr = typeof src === "string" ? src : "";
-  const unoptimized =
-    srcStr.startsWith("/uploads/") ||
-    (srcStr.startsWith("http") && !srcStr.includes("images.unsplash.com"));
+  const [failed, setFailed] = useState(!srcStr);
 
-  return <Image src={src} unoptimized={unoptimized} {...props} />;
+  const resolved = failed ? PLACEHOLDER_IMAGE : srcStr;
+
+  return (
+    <Image
+      {...props}
+      src={resolved}
+      unoptimized={unoptimized ?? shouldUseUnoptimizedImage(srcStr)}
+      onError={(e) => {
+        setFailed(true);
+        onError?.(e);
+      }}
+    />
+  );
 }

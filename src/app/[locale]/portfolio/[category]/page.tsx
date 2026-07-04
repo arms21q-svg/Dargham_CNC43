@@ -3,11 +3,17 @@ import { ProjectImage } from "@/components/ui/ProjectImage";
 import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { getProjectsByCategory } from "@/lib/data/projects";
+import { getProjects, getProjectsByCategory } from "@/lib/data/projects";
 import { PROJECT_CATEGORIES } from "@/lib/constants";
+import { categoryHasProjects } from "@/lib/categories";
 
-export function generateStaticParams() {
-  return PROJECT_CATEGORIES.map((category) => ({ category }));
+export const dynamic = "force-dynamic";
+
+export async function generateStaticParams() {
+  const projects = await getProjects();
+  return PROJECT_CATEGORIES.filter((category) => categoryHasProjects(projects, category)).map(
+    (category) => ({ category })
+  );
 }
 
 export default async function PortfolioCategoryPage({
@@ -22,9 +28,11 @@ export default async function PortfolioCategoryPage({
     notFound();
   }
 
+  const projects = await getProjectsByCategory(category);
+  if (projects.length === 0) notFound();
+
   const t = await getTranslations({ locale, namespace: "portfolio" });
   const loc = locale as "ar" | "en";
-  const projects = await getProjectsByCategory(category);
 
   return (
     <div className="py-20">
@@ -37,35 +45,31 @@ export default async function PortfolioCategoryPage({
           </Link>
         </div>
 
-        {projects.length === 0 ? (
-          <p className="text-center text-muted-foreground py-20">No projects in this category yet.</p>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <Link key={project.id} href={`/projects/${project.slug}`}>
-                <div className="group rounded-xl overflow-hidden bg-card border border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <ProjectImage
-                      src={project.images[0]}
-                      alt={project.title[loc]}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-gold transition-colors">
-                      {project.title[loc]}
-                    </h3>
-                    <p className="text-muted-foreground text-sm line-clamp-2">
-                      {project.description[loc]}
-                    </p>
-                  </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project) => (
+            <Link key={project.id} href={`/projects/${project.slug}`}>
+              <div className="group rounded-xl overflow-hidden bg-card border border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <ProjectImage
+                    src={project.images[0]}
+                    alt={project.title[loc]}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
                 </div>
-              </Link>
-            ))}
-          </div>
-        )}
+                <div className="p-5">
+                  <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-gold transition-colors">
+                    {project.title[loc]}
+                  </h3>
+                  <p className="text-muted-foreground text-sm line-clamp-2">
+                    {project.description[loc]}
+                  </p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

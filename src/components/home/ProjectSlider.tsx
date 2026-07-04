@@ -44,7 +44,7 @@ export function ProjectSlider({ projects }: { projects: Project[] }) {
 
         <div className="relative max-w-5xl mx-auto">
           <div className="relative aspect-[16/10] md:aspect-[21/9] rounded-2xl md:rounded-3xl overflow-hidden border border-navy-600/10 shadow-lg bg-navy-900">
-            <Link href={`/projects/${current.slug}`} className="block w-full h-full group">
+            <Link href={`/projects/${current.slug}`} className="relative block w-full h-full group">
               <ProjectImage
                 key={current.id}
                 src={current.images[0]}

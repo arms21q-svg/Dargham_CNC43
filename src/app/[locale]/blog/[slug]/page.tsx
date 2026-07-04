@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import Image from "next/image";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import { Link } from "@/i18n/navigation";
 import { ArrowLeft, ArrowRight, Calendar, User } from "lucide-react";
 import { getBlogPostBySlug, blogPosts } from "@/data";
@@ -33,7 +33,7 @@ export default async function BlogPostPage({
         </Link>
 
         <div className="relative aspect-video rounded-2xl overflow-hidden mb-8">
-          <Image src={post.image} alt={post.title[loc]} fill className="object-cover" priority sizes="100vw" />
+          <ProjectImage src={post.image} alt={post.title[loc]} fill className="object-cover" priority sizes="100vw" />
         </div>
 
         <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">

@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import { AdminShell } from "@/components/admin/AdminShell";
 import type { Project } from "@/types";
+import { CATEGORY_LABELS } from "@/lib/categories";
 
 export function ProjectsTable({ projects }: { projects: Project[] }) {
   const router = useRouter();
@@ -55,7 +56,7 @@ export function ProjectsTable({ projects }: { projects: Project[] }) {
                   <p className="text-sm font-medium text-gray-900">{p.title.ar}</p>
                   <p className="text-xs text-gray-400">{p.title.en}</p>
                 </td>
-                <td className="px-6 py-4 text-sm text-gray-500 capitalize">{p.category}</td>
+                <td className="px-6 py-4 text-sm text-gray-500">{CATEGORY_LABELS[p.category].ar}</td>
                 <td className="px-6 py-4">
                   {p.featured ? (
                     <span className="text-xs px-2 py-0.5 rounded-full bg-gold/20 text-gold-dark">نعم</span>

@@ -21,9 +21,8 @@ export async function PATCH(request: Request) {
     revalidateSiteContent();
     return NextResponse.json(settings);
   } catch (error) {
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : "Failed to update settings" },
-      { status: 400 }
-    );
+    const message = error instanceof Error ? error.message : "Failed to update settings";
+    const status = message.includes("Vercel Blob") ? 503 : 400;
+    return NextResponse.json({ error: message }, { status });
   }
 }

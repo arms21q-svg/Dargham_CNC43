@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import Image from "next/image";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import { Link } from "@/i18n/navigation";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Button } from "@/components/ui/Button";
@@ -41,7 +41,7 @@ export default async function ServicesPage({
                 className={`grid lg:grid-cols-2 gap-8 items-center ${!isEven ? "lg:direction-rtl" : ""}`}
               >
                 <div className={`relative aspect-video rounded-2xl overflow-hidden ${!isEven ? "lg:order-2" : ""}`}>
-                  <Image
+                  <ProjectImage
                     src={service.image}
                     alt={service.title[loc]}
                     fill

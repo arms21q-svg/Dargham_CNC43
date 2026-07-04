@@ -1,28 +1,22 @@
-import fs from "fs/promises";
 import { unstable_noStore as noStore } from "next/cache";
 import type { Project, ProjectCategory } from "@/types";
 import { seedProjects } from "@/data/seed";
-import { DATA_DIR, PROJECTS_FILE } from "./paths";
+import { readJson, writeJson, ensureLocalSeed } from "./storage";
 
-async function ensureProjectsFile() {
-  try {
-    await fs.access(PROJECTS_FILE);
-  } catch {
-    await fs.mkdir(DATA_DIR, { recursive: true });
-    await fs.writeFile(PROJECTS_FILE, JSON.stringify(seedProjects, null, 2), "utf-8");
-  }
+const PROJECTS_KEY = "projects.json";
+
+async function loadProjects(): Promise<Project[]> {
+  await ensureLocalSeed(PROJECTS_KEY, seedProjects);
+  return readJson<Project[]>(PROJECTS_KEY, seedProjects);
+}
+
+async function saveProjects(projects: Project[]) {
+  await writeJson(PROJECTS_KEY, projects);
 }
 
 export async function getProjects(): Promise<Project[]> {
   noStore();
-  await ensureProjectsFile();
-  const raw = await fs.readFile(PROJECTS_FILE, "utf-8");
-  return JSON.parse(raw) as Project[];
-}
-
-async function saveProjects(projects: Project[]) {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  await fs.writeFile(PROJECTS_FILE, JSON.stringify(projects, null, 2), "utf-8");
+  return loadProjects();
 }
 
 export async function getProjectBySlug(slug: string): Promise<Project | undefined> {
@@ -64,10 +58,10 @@ export async function createProject(input: ProjectInput): Promise<Project> {
   const projects = await getProjects();
   const id = String(Date.now());
   const baseSlug = input.slug || slugify(input.title.en || input.title.ar);
-  let slug = baseSlug;
+  let slug = baseSlug || `project-${id}`;
   let i = 1;
   while (projects.some((p) => p.slug === slug)) {
-    slug = `${baseSlug}-${i++}`;
+    slug = `${baseSlug || "project"}-${i++}`;
   }
 
   const project: Project = { ...input, id, slug };

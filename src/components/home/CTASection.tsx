@@ -31,6 +31,7 @@ export function CTASection() {
             <h2 className="text-3xl md:text-5xl font-bold text-gradient-gold mb-4">{t("title")}</h2>
             <p className="text-foreground/70 text-lg mb-10 max-w-xl mx-auto">{t("subtitle")}</p>
             <div className="flex flex-wrap justify-center gap-4">
+              {contactLinks.whatsapp && (
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -43,12 +44,15 @@ export function CTASection() {
                   {t("whatsapp")}
                 </Button>
               </motion.a>
+              )}
+              {contactLinks.phone && (
               <motion.a whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} href={contactLinks.phone}>
                 <Button variant="outline" size="lg" className="gap-2">
                   <Phone className="w-5 h-5" />
                   {t("call")}
                 </Button>
               </motion.a>
+              )}
             </div>
           </div>
         </motion.div>

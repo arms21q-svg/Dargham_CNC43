@@ -1,9 +1,9 @@
 {
-  "phone": "1234567822",
-  "phoneDisplay": "07712336614",
-  "whatsapp": "+9647712336614",
-  "whatsappDisplay": "07712336614",
-  "email": "info@dirgham-cnc.com",
+  "phone": "07700751700",
+  "phoneDisplay": "07700751700",
+  "whatsapp": "07700751700",
+  "whatsappDisplay": "07700751700",
+  "email": "info@d23irgha456789m-cnc.com",
   "mapUrl": "https://share.google/2ZzKhGvJDLz1JYIyE",
   "address": {
     "ar": "بغداد، العراق",
@@ -20,10 +20,5 @@
     "years": 10,
     "satisfaction": 98
   },
-  "sliderProjectIds": [
-    "1",
-    "2",
-    "3",
-    "4"
-  ]
+  "sliderProjectIds": []
 }

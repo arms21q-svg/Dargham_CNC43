@@ -10,12 +10,27 @@ export function ContactStrip() {
   const t = useTranslations("contact.info");
   const settings = useSiteSettings();
   const contactLinks = buildContactLinks(settings);
+  const address = getAddressFromSettings(settings, locale);
 
   const links = [
-    { icon: Phone, label: t("phone"), value: settings.phoneDisplay, href: contactLinks.phone },
-    { icon: MessageCircle, label: t("whatsapp"), value: settings.whatsappDisplay, href: contactLinks.whatsapp, external: true },
-    { icon: MapPin, label: t("address"), value: getAddressFromSettings(settings, locale), href: contactLinks.map, external: true },
-  ];
+    settings.phoneDisplay?.trim() && contactLinks.phone
+      ? { icon: Phone, label: t("phone"), value: settings.phoneDisplay, href: contactLinks.phone }
+      : null,
+    settings.whatsappDisplay?.trim() && contactLinks.whatsapp
+      ? { icon: MessageCircle, label: t("whatsapp"), value: settings.whatsappDisplay, href: contactLinks.whatsapp, external: true }
+      : null,
+    address && contactLinks.map
+      ? { icon: MapPin, label: t("address"), value: address, href: contactLinks.map, external: true }
+      : null,
+  ].filter(Boolean) as {
+    icon: typeof Phone;
+    label: string;
+    value: string;
+    href: string;
+    external?: boolean;
+  }[];
+
+  if (links.length === 0) return null;
 
   return (
     <div className="glass-nav border-b border-white/10 hidden md:block">

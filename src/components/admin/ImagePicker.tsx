@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import { Upload, Link2, X, Loader2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -126,17 +126,22 @@ export function ImagePicker({ images, onChange, required }: ImagePickerProps) {
 
       {error && <p className="text-sm text-red-600">{error}</p>}
 
+      {images.some((src) => src.startsWith("/uploads/")) && (
+        <p className="text-sm text-amber-700 bg-amber-50 border border-amber-100 rounded-lg p-3">
+          مسارات /uploads/ لا تعمل على Vercel بعد النشر. فعّل Vercel Blob وأعد رفع الصور، أو استخدم رابطاً خارجياً.
+        </p>
+      )}
+
       {images.length > 0 ? (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
           {images.map((src, i) => (
             <div key={`${src}-${i}`} className="relative group aspect-square rounded-lg overflow-hidden border border-gray-200 bg-gray-50">
-              <Image
+              <ProjectImage
                 src={src}
                 alt=""
                 fill
                 className="object-cover"
                 sizes="120px"
-                unoptimized={src.startsWith("http") || src.startsWith("/uploads")}
               />
               <button
                 type="button"

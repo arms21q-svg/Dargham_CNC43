@@ -15,15 +15,19 @@ export async function LocalBusinessJsonLd({ locale }: LocalBusinessJsonLdProps) 
     "@type": "LocalBusiness",
     name: SITE_CONFIG.fullName[loc],
     description: SITE_CONFIG.fullName[loc],
-    telephone: settings.phone,
-    email: settings.email,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: settings.address[loc],
-      addressCountry: "IQ",
-    },
-    url: contactLinks.map,
-    sameAs: [settings.social.instagram, settings.social.facebook],
+    ...(settings.phone?.trim() ? { telephone: settings.phone } : {}),
+    ...(settings.email?.trim() ? { email: settings.email } : {}),
+    ...(settings.address[loc]?.trim()
+      ? {
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: settings.address[loc],
+            addressCountry: "IQ",
+          },
+        }
+      : {}),
+    ...(contactLinks.map ? { url: contactLinks.map } : {}),
+    sameAs: [settings.social.instagram, settings.social.facebook].filter(Boolean),
   };
 
   return (

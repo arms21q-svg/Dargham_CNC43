@@ -1,5 +1,5 @@
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import Image from "next/image";
+import { ProjectImage } from "@/components/ui/ProjectImage";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Eye, Target, Award, Search, Palette, Cog, CheckCircle } from "lucide-react";
 
@@ -33,7 +33,7 @@ export default async function AboutPage({
             <p className="text-muted-foreground leading-relaxed text-lg">{t("storyText")}</p>
           </div>
           <div className="relative aspect-video rounded-2xl overflow-hidden">
-            <Image
+            <ProjectImage
               src="https://images.unsplash.com/photo-1504148455328-c376907d081c?w=1200&q=80"
               alt="Workshop"
               fill
@@ -83,7 +83,7 @@ export default async function AboutPage({
               "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&q=80",
             ].map((src, i) => (
               <div key={i} className="relative aspect-video rounded-xl overflow-hidden">
-                <Image src={src} alt={`Workshop ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="33vw" />
+                <ProjectImage src={src} alt={`Workshop ${i + 1}`} fill className="object-cover hover:scale-105 transition-transform duration-500" sizes="33vw" />
               </div>
             ))}
           </div>

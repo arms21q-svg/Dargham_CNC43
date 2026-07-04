@@ -10,6 +10,7 @@ import { ContactStrip } from "@/components/layout/ContactStrip";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingContact } from "@/components/layout/FloatingContact";
+import { AiHubLazy } from "@/components/ai/AiHubLazy";
 import { LocalBusinessJsonLd } from "@/components/seo/LocalBusinessJsonLd";
 import "../globals.css";
 
@@ -71,6 +72,7 @@ export default async function LocaleLayout({
             <main className="flex-1">{children}</main>
             <Footer />
             <FloatingContact />
+            <AiHubLazy />
           </Providers>
         </NextIntlClientProvider>
       </body>

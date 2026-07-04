@@ -13,10 +13,19 @@ export function FloatingContact() {
   const contactLinks = buildContactLinks(settings);
 
   const items = [
-    { key: "map", icon: MapPin, href: contactLinks.map, external: true, labelAr: "الموقع", labelEn: "Location" },
-    { key: "call", icon: Phone, href: contactLinks.phone, external: false, labelAr: "اتصال", labelEn: "Call" },
-    { key: "wa", icon: MessageCircle, href: contactLinks.whatsapp, external: true, labelAr: "واتساب", labelEn: "WhatsApp" },
-  ] as const;
+    contactLinks.map ? { key: "map", icon: MapPin, href: contactLinks.map, external: true, labelAr: "الموقع", labelEn: "Location" } : null,
+    contactLinks.phone ? { key: "call", icon: Phone, href: contactLinks.phone, external: false, labelAr: "اتصال", labelEn: "Call" } : null,
+    contactLinks.whatsapp ? { key: "wa", icon: MessageCircle, href: contactLinks.whatsapp, external: true, labelAr: "واتساب", labelEn: "WhatsApp" } : null,
+  ].filter(Boolean) as {
+    key: string;
+    icon: typeof Phone;
+    href: string;
+    external: boolean;
+    labelAr: string;
+    labelEn: string;
+  }[];
+
+  if (items.length === 0) return null;
 
   return (
     <div
